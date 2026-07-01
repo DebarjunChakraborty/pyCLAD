@@ -163,8 +163,8 @@ if __name__ == "__main__":
     ).plot(
         mc_d.rf_importances,
         "Drift",
-        save_path="explainability_drift_heatmap.png",
-        show=False,
+        #save_path="explainability_drift_heatmap.png",
+        #show=False,
     )
 
     FeatureImportanceHeatmap(
@@ -175,8 +175,8 @@ if __name__ == "__main__":
     ).plot(
         mc_n.rf_importances,
         "No-Drift",
-        save_path="explainability_nodrift_heatmap.png",
-        show=False,
+        #save_path="explainability_nodrift_heatmap.png",
+        #show=False,
     )
 
     print("  Saved: explainability_drift_heatmap.png")
