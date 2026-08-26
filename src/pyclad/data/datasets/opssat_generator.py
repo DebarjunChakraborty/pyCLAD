@@ -1,5 +1,5 @@
 """
-OPS-SAT Data Generator for pyCLAD.
+OPS-SAT Data Generator.
 Transforms raw telemetry segments into continual learning concepts.
 """
 from pathlib import Path
@@ -80,7 +80,7 @@ def generate_ops_sat_concepts(
 
     ch_df = ch_df.dropna(subset=feature_cols).copy()
 
-    # 1. TRAIN: nominal segments only
+    # Train: nominal segments only
     train_rows_raw = ch_df[(ch_df["train"] == 1) & (ch_df["anomaly"] == 0)]
     train_X = train_rows_raw[feature_cols].values.astype(np.float64)
 
@@ -99,7 +99,7 @@ def generate_ops_sat_concepts(
         train_rows.append(row_dict)
     train_df = pd.DataFrame(train_rows)
 
-    # 2. TEST: nominal + anomalous segments
+    # Test: nominal + anomalous segments
     test_rows_raw = ch_df[ch_df["train"] == 0].sort_values("segment").reset_index(drop=True)
     test_X = test_rows_raw[feature_cols].values.astype(np.float64)
     test_labels = test_rows_raw["anomaly"].values.astype(int)
